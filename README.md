@@ -21,21 +21,4 @@ Acesse a aplicação em:
 
 Todos os modelos foram treinados e salvos como arquivos `.pkl` e armazenados com **Git LFS**.
 
----
 
-## 📁 Estrutura do Projeto
-```
-cardiocare/ ├── modelos/ │ ├── modelo_regressao_logistica.pkl │ ├── modelo_random_forest.pkl │ ├── modelo_svm.pkl │ └── escalador.pkl ├── app.py ├── requirements.txt └── README.md
-```
-
----
-
-## 💻 Como executar localmente
-
-1. Clone o repositório:
-
-```bash
-git clone https://github.com/rodrigodel/cardiocare.git
-cd cardiocare
-pip install -r requirements.txt
-streamlit run app.py
