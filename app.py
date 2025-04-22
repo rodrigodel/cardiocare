@@ -2,40 +2,20 @@ import streamlit as st
 import joblib
 import numpy as np
 import pandas as pd
-
 import os
-import requests
 
-# Cria o diretório modelos se não existir
+# Criar diretório local de modelos, se necessário
 os.makedirs("modelos", exist_ok=True)
 
-def baixar_modelo_externo(url, destino):
-    if not os.path.exists(destino):
-        print(f"🔄 Baixando modelo: {url}")
-        r = requests.get(url)
-        with open(destino, 'wb') as f:
-            f.write(r.content)
-        print("✅ Modelo salvo:", destino)
-
-def baixar_modelo_externo(url, destino):
-    if not os.path.exists(destino):
-        print(f"🔄 Baixando modelo de {url}...")
-        r = requests.get(url)
-        with open(destino, 'wb') as f:
-            f.write(r.content)
-        print("✅ Download concluído.")
-
-# === Carregar modelos e escalador ===
-model_lr = joblib.load('modelos/modelo_regressao_logistica.pkl')
-# Baixar se não existir localmente
-baixar_modelo_externo(
-    "http://rodrigozambon.com.br/cardiocare/modelos/modelo_random_forest.pkl",
-    "modelos/modelo_random_forest.pkl"
-)
-
-model_rf = joblib.load('modelos/modelo_random_forest.pkl')
-model_svm = joblib.load('modelos/modelo_svm.pkl')
-scaler = joblib.load('modelos/escalador.pkl')
+# === Carregamento dos modelos locais ===
+try:
+    model_rf = joblib.load("modelos/modelo_random_forest.pkl")
+    model_lr = joblib.load("modelos/modelo_regressao_logistica.pkl")
+    model_svm = joblib.load("modelos/modelo_svm.pkl")
+    scaler   = joblib.load("modelos/escalador.pkl")
+    st.success("✅ Modelos carregados com sucesso!")
+except FileNotFoundError as e:
+    st.error(f"❌ Erro ao carregar modelos: {e}")
 
 # === Função de predição ===
 def prever_diagnostico(dados_input):
