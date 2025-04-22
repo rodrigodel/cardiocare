@@ -24,9 +24,9 @@ Todos os modelos foram treinados e salvos como arquivos `.pkl` e armazenados com
 ---
 
 ## 📁 Estrutura do Projeto
-
+```
 cardiocare/ ├── modelos/ │ ├── modelo_regressao_logistica.pkl │ ├── modelo_random_forest.pkl │ ├── modelo_svm.pkl │ └── escalador.pkl ├── app.py ├── requirements.txt └── README.md
-
+```
 
 ---
 
